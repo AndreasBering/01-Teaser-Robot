@@ -1304,8 +1304,8 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "DemoProzess",
-      "projectName": "DemoProzess",
+      "projectUniqueName": "Teaser_BOT",
+      "projectName": "Teaser_BOT",
       "projectPath": "C:\\Users\\Andreas\\Documents\\UiPath\\StudiTemps\\01-Teaser-Robot\\.local",
       "packagesPath": "C:\\Users\\Andreas\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Andreas\\Documents\\UiPath\\StudiTemps\\01-Teaser-Robot\\.local"

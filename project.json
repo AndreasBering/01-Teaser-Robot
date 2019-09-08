@@ -1,6 +1,6 @@
 {
-  "name": "DemoProzess",
-  "description": "Leerer Prozess",
+  "name": "Teaser_BOT",
+  "description": "Studi Temps - Teaser ROBOT",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.6.3]",
