@@ -159,14 +159,6 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="s:String[]">[strJobKeywords]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="s:String[]">[{"Werkstudent", "Aushilfe","Teilzeit","Kommissionierer","Studentenjob"}]</InArgument>
-                  </Assign.Value>
-                </Assign>
                 <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="484,160" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                   <ui:MultipleAssign.AssignOperations>
                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
@@ -197,8 +189,8 @@
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                 </ui:MultipleAssign>
-                <While sap:VirtualizedContainerService.HintSize="484,730" sap2010:WorkflowViewState.IdRef="While_1" Condition="[i&lt;strJobKeywords.Length]">
-                  <Sequence sap:VirtualizedContainerService.HintSize="304,570" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <While DisplayName="While - Alle Jobs" sap:VirtualizedContainerService.HintSize="484,723" sap2010:WorkflowViewState.IdRef="While_1" Condition="[i&lt;strJobKeywords.Length]">
+                  <Sequence sap:VirtualizedContainerService.HintSize="304,565" sap2010:WorkflowViewState.IdRef="Sequence_11">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -212,8 +204,8 @@
                         <InArgument x:TypeArguments="x:String">[strJobKeywords(i)]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[strActJobKeyword]" />
-                    <Sequence DisplayName="Search_On_Following" sap:VirtualizedContainerService.HintSize="262,68" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Suche: &quot; + strActJobKeyword]" />
+                    <Sequence DisplayName="Search single job" sap:VirtualizedContainerService.HintSize="262,66" sap2010:WorkflowViewState.IdRef="Sequence_12">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -251,7 +243,7 @@
                         </ui:Click.Target>
                       </ui:Click>
                     </Sequence>
-                    <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="476,855" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                    <Sequence DisplayName="Data Scraping - Alle Anzeigen auslesen" sap:VirtualizedContainerService.HintSize="476,855" sap2010:WorkflowViewState.IdRef="Sequence_22">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
                         <Variable x:TypeArguments="x:String" Name="variable1" />
@@ -269,7 +261,7 @@
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                            <Sequence DisplayName="Do - Alle Seiten der Anzeigen" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_25">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -339,7 +331,7 @@
                         </Assign.Value>
                       </Assign>
                       <ui:WriteCsvFile Encoding="{x:Null}" AddHeaders="True" DataTable="[ExtractDataTable]" Delimitator="Comma" DisplayName="Write CSV" FilePath="[strOutFileName]" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="WriteCsvFile_2" />
-                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Saved: &quot; + strOutFileName]" />
+                      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="WriteLine_9" Text="[&quot;Gespeichert: &quot; + &quot;__&quot; + strActJobKeyword + &quot;__ &quot; + strCiti + &quot;.csv&quot;]" />
                     </Sequence>
                     <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                       <Assign.To>
@@ -351,7 +343,6 @@
                     </Assign>
                   </Sequence>
                 </While>
-                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="484,62" sap2010:WorkflowViewState.IdRef="WriteLine_7" Text="[strJobKeywords.Length.ToString]" />
               </Sequence>
             </FlowStep>
           </FlowStep.Next>
@@ -490,7 +481,7 @@
     <FlowStep>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">660,217</av:Point>
+          <av:Point x:Key="ShapeLocation">660,227</av:Point>
           <av:Size x:Key="ShapeSize">200,66</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
